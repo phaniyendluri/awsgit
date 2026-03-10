@@ -43,3 +43,9 @@ mvn spring-boot:run
 
 ## Production deployment inputs
 See [PRODUCTION_READY_GUIDE.md](./PRODUCTION_READY_GUIDE.md) for free/low-cost hosting options, env vars, and hardening checklist.
+
+
+## Tests
+```bash
+mvn test
+```
