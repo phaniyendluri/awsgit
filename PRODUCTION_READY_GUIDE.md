@@ -54,13 +54,8 @@ Set these in your host:
 - `POSTGRES_URL=jdbc:postgresql://<host>:5432/<db>`
 - `POSTGRES_USER=<user>`
 - `POSTGRES_PASSWORD=<password>`
-- `MONGO_URI=mongodb+srv://<user>:<url_encoded_password>@<cluster-host>/?retryWrites=true&w=majority&appName=Cluster0`
-- `MONGO_DB=recipes`
+- `MONGO_URI=mongodb+srv://<user>:<password>@<cluster>/<db>`
 - `PORT=8080` (or host-defined)
-
-Notes:
-- If you prefer, you can include the DB in URI directly (`.../<db>?...`) and skip `MONGO_DB`.
-- URL-encode MongoDB passwords that include special characters.
 
 ## 6) Deployment checklist
 1. Build app artifact (`mvn clean package`).
