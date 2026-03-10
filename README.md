@@ -49,21 +49,6 @@ Create a clean separate repository from this codebase:
 ./scripts/create_separate_repo.sh ../recipe-finder-prod <your-new-git-url>
 ```
 
-## Neon PostgreSQL quick setup
-If Neon gives you a URL like:
-`postgresql://user:password@host/db?sslmode=require&channel_binding=require`
-
-You can set it directly as `POSTGRES_URL` and the app now auto-converts it to JDBC at runtime.
-
-Example env vars:
-```bash
-export POSTGRES_URL='postgresql://<user>:<password>@<host>/<db>?sslmode=require&channel_binding=require'
-export POSTGRES_USER='<optional-fallback-user>'
-export POSTGRES_PASSWORD='<optional-fallback-password>'
-```
-
-> Security: never commit real DB credentials to GitHub. If credentials were shared publicly, rotate them immediately in Neon.
-
 ## Production deployment inputs
 See [PRODUCTION_READY_GUIDE.md](./PRODUCTION_READY_GUIDE.md) for free/low-cost hosting options, env vars, and hardening checklist.
 
