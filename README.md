@@ -14,6 +14,7 @@ This project uses:
 - PostgreSQL cache (20-minute TTL)
 - MongoDB audit log for search requests
 - Improved ingredient matching accuracy using real meal ingredient fields
+- Health endpoint exposed at `/actuator/health`
 
 ## Run locally
 
@@ -32,7 +33,8 @@ mvn spring-boot:run
 ```
 
 ### 3) Open app
-`http://localhost:8080`
+- App: `http://localhost:8080`
+- Health: `http://localhost:8080/actuator/health`
 
 ## API endpoint
 `GET /api/recipes/search?ingredients=chicken,onion&maxTime=45&diet=any`
@@ -41,9 +43,14 @@ mvn spring-boot:run
 - Final search results are cached in PostgreSQL table `recipe_cache`.
 - Every search is saved in MongoDB collection `recipe_search_audit`.
 
+## Separate-repo setup
+Create a clean separate repository from this codebase:
+```bash
+./scripts/create_separate_repo.sh ../recipe-finder-prod <your-new-git-url>
+```
+
 ## Production deployment inputs
 See [PRODUCTION_READY_GUIDE.md](./PRODUCTION_READY_GUIDE.md) for free/low-cost hosting options, env vars, and hardening checklist.
-
 
 ## Tests
 ```bash

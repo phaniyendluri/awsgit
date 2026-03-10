@@ -16,7 +16,24 @@ Your backend now:
 
 This is as accurate as TheMealDB data allows. For higher commercial accuracy, migrate provider to Spoonacular/Edamam.
 
-## 3) Free hosting options
+## 3) Create a separate repository (from this codebase)
+Use the helper script:
+```bash
+./scripts/create_separate_repo.sh ../recipe-finder-prod <your-new-git-url>
+```
+
+If you want to prepare locally first without pushing:
+```bash
+./scripts/create_separate_repo.sh ../recipe-finder-prod
+```
+
+The script:
+- copies production app files to a new folder
+- initializes a new git repo
+- creates an initial commit
+- optionally links/pushes to your new remote
+
+## 4) Free hosting options
 
 ### Option A (simple, mostly free to start)
 - **Render Web Service** for Spring Boot app
@@ -32,7 +49,7 @@ This is as accurate as TheMealDB data allows. For higher commercial accuracy, mi
 - **Oracle Cloud Always Free VM**
 - run app + Postgres + Mongo in Docker Compose on the VM
 
-## 4) Required environment variables
+## 5) Required environment variables
 Set these in your host:
 - `POSTGRES_URL=jdbc:postgresql://<host>:5432/<db>`
 - `POSTGRES_USER=<user>`
@@ -40,23 +57,24 @@ Set these in your host:
 - `MONGO_URI=mongodb+srv://<user>:<password>@<cluster>/<db>`
 - `PORT=8080` (or host-defined)
 
-## 5) Deployment checklist
+## 6) Deployment checklist
 1. Build app artifact (`mvn clean package`).
 2. Provision Postgres + Mongo.
 3. Configure env vars.
-4. Deploy app.
+4. Deploy app (Dockerfile included).
 5. Verify health and smoke test:
    - Open `/`
-   - Call `/api/recipes/search?ingredients=chicken,onion&maxTime=45&diet=any`
+   - Health: `/actuator/health`
+   - API: `/api/recipes/search?ingredients=chicken,onion&maxTime=45&diet=any`
 6. Turn on logs and alerts.
 
-## 6) Production hardening checklist
-- Add `/actuator/health` for health checks.
-- Add request timeout + retry policy around external API.
-- Add rate limiter per IP.
-- Add structured logging and centralized log aggregation.
+## 7) Production hardening checklist
+- Keep `/actuator/health` as host health-check endpoint.
+- Keep request timeout + retry policy around external API.
+- Add rate limiter per IP (recommended next).
+- Add centralized logs and alerts.
 - Add CI/CD pipeline with test stage + deploy stage.
 - Add backups for Postgres and Mongo.
 
-## 7) Cost note
+## 8) Cost note
 No permanent platform is 100% free at scale. For a portfolio/demo app, free tiers are fine. For real traffic, expect paid plans.
