@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What Should I Cook?</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>🍳 What Should I Cook?</h1>
+        <p>Type ingredients you already have and get recipe ideas instantly.</p>
+      </header>
+
+      <section class="controls" aria-label="Recipe search controls">
+        <label for="ingredientsInput">Ingredients (comma-separated)</label>
+        <textarea
+          id="ingredientsInput"
+          placeholder="Example: chicken, tomato, onion"
+          rows="3"
+        ></textarea>
+
+        <div class="filters">
+          <div>
+            <label for="maxTime">Max cooking time</label>
+            <select id="maxTime">
+              <option value="all">Any</option>
+              <option value="20">20 min</option>
+              <option value="30">30 min</option>
+              <option value="45">45 min</option>
+              <option value="60">60 min</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="dietFilter">Diet</label>
+            <select id="dietFilter">
+              <option value="any">Any</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten-free">Gluten-Free</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="searchBtn">Find Recipes</button>
+      </section>
+
+      <section>
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <template id="recipeCardTemplate">
+      <article class="card">
+        <img alt="" class="card-image" />
+        <div class="card-content">
+          <h2 class="card-title"></h2>
+          <p class="meta"></p>
+          <p class="summary"></p>
+          <a class="card-link" target="_blank" rel="noopener noreferrer">View Recipe</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
